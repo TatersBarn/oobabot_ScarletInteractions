@@ -1,4 +1,6 @@
 # `oobabot`
+#THIS FORK IS JUST FOR TESTING SOME LIL THINGS AND IF YOU FOLLOW ANY LINKS IN THIS README MOST ARE NOT UNIQUE. NEARLY ALL OF THIS IS JUST COPIED FROM ANOTHER FORK
+
 
 **`oobabot`** is a Discord bot which talks to a Large Language Model AIs (like LLaMA, llama.cpp, etc...), running on just about any api-enabled backend:
 
@@ -18,7 +20,7 @@ Even supports non-local solutions such as Openrouter, Cohere, OpenAI API, etc.
 requires python 3.8+
 
 ```bash
-  pip install git+https://github.com/jmoney7823956789378/oobabot
+  pip install git+https://github.com/TatersBarn/oobabot_ScarletInteractions
 ```
 
 1. Install LLM loader with an OpenAI-compatible API.
