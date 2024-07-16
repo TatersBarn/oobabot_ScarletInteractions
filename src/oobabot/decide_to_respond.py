@@ -97,11 +97,17 @@ class DecideToRespond:
         if isinstance(message, types.ChannelMessage):
             if message.is_mentioned(our_user_id):
                 return True
-
+                
         # reply to all messages that include a wakeword
         if self.persona.contains_wakeword(message.body_text):
-            return True
-
+                # ignore messages from other bots, out of fear of infinite loops,
+                # as well as world domination
+            if message.author_is_bot:
+            
+                if random.random() < 0.333:
+                
+                    return True
+            
         return False
 
     def calc_base_chance_of_unsolicited_reply(
@@ -159,6 +165,12 @@ class DecideToRespond:
         # if the new message ends with an exclamation point, we'll respond
         if message.body_text.endswith("!"):
             response_chance += self.interrobang_bonus
+            
+        # ignore messages from other bots, out of fear of infinite loops,
+        # as well as world domination
+        if message.author_is_bot:
+            response_chance /= self.interrobang_bonus
+
 
         time_since_last_mention = self.last_reply_times.time_since_last_mention(message)
         fancy_logger.get().debug(
@@ -188,11 +200,6 @@ class DecideToRespond:
         channel ID we want to track will be that of the thread
         we create, not the channel the message was posted in.
         """
-
-        # ignore messages from other bots, out of fear of infinite loops,
-        # as well as world domination
-        if message.author_is_bot:
-            return (False, False)
 
         # we do not want the bot to reply to itself.  This is redundant
         # with the previous check, except it won't be if someone decides
